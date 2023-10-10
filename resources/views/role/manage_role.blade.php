@@ -27,7 +27,7 @@ Dashboard
                             <td>{{ $role->role }}</td>
                             <td>
                                 <div class="btn-group">
-                                <a href="{{ route('role.edit', ['id' => $role->roleID]) }}"
+                                <a href="{{ route('role.edit', ['roleID' => $role->roleID]) }}"
                                     class="btn btn-primary">Edit</a>
                                 <form action="{{ route('role.delete', ['roleID' => $role->roleID]) }}" method="POST">
                                     @csrf

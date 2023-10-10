@@ -18,7 +18,8 @@ Dashboard
 
                         <div class="form-group mt-3">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" required>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name"
+                                required>
                         </div>
                         @error('name')
                         <div class="alert alert-danger">{{ $message }}</div>
@@ -26,23 +27,26 @@ Dashboard
 
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email"
+                                required>
                         </div>
 
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
+                            <input type="password" class="form-control" id="password" name="password"
+                                placeholder="Enter Password" required>
                         </div>
 
-                        <div>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Choose Role</option>
-                            <option value="1">agent</option>
-                            <option value="2">admin</option>
-                        </select>
+                        <div class="form-group">
+
+                            <select class="form-control select2" style="width: 100%;" name="userRole">
+                                @foreach($roles as $role)
+                                <option>{{ $role->role}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="col-md-12 text-center mb-3">
-                        <button type="submit" class="btn btn-primary text-center ">Add User</button>
+                            <button type="submit" class="btn btn-primary text-center ">Add User</button>
                         </div>
                     </form>
 

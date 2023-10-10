@@ -45,5 +45,34 @@ public function destroy($roleID)
     return redirect()->route('role.manage_role')->with('success', 'Role deleted successfully');
 }
 
+public function edit($roleID)
+{
+    $role = Roles::find($roleID);
+
+    if (!$role) {
+        return redirect()->route('role.manage_role')->with('error', 'Role not found');
+    }
+
+    return view('role.edit_role', ['role' => $role]);
+}
+
+public function update(Request $request, $roleID)
+{
+    $validatedData = $request->validate([
+        'role' => 'required|max:255',
+    ]);
+
+    $role = Roles::find($roleID);
+
+    if (!$role) {
+        return redirect()->route('role.manage_role')->with('error', 'Role not found');
+    }
+
+    $role->role = $validatedData['role'];
+    $role->save();
+
+    return redirect()->route('role.manage_role')->with('success', 'Role updated successfully');
+}
+
 
 }

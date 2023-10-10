@@ -2,16 +2,49 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Roles;
 use App\Models\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class ManageUserController extends Controller
 {
-    public function add_user()
+
+
+    public function dashboard()
     {
-        return view('users.add_user');
+        return view('dashboard');
+    }
+    public function viewAddUser()
+    {
+        $roles = Roles::all();
+        return view('users.add_user',['roles' => $roles]);
+    }
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'max:255',
+                Rule::unique('users', 'email'),
+            ],
+            'password' => 'required|string|min:8',
+            'userRole' => 'required',
+        ]);
+
+        $user = new User();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = Hash::make($request->input('password'));
+        $user->role = $request->input('userRole');
+        $user->save();
+
+        return redirect()->route('users.manage_user')->with('success', 'User added successfully');
     }
 
     public function manage_user()
@@ -28,17 +61,18 @@ class ManageUserController extends Controller
     }
 
     public function deleteUser($id)
-    {
-        $user = User::find($id);
+{
+    $user = User::find($id);
 
-        if (!$user) {
-            return redirect()->route('users.manage_user')->with('error', 'User not found');
-        }
+    if (!$user) {
+        return redirect()->route('users.manage_user')->with('error', 'User not found');
+    }
 
-        $user->delete();
+    $user->delete();
 
-        return redirect()->route('users.manage_user')->with('success', 'User deleted successfully');}
- 
+    return redirect()->route('users.manage_user')->with('success', 'User deleted successfully');
+}
+
  
         public function updateUser(Request $request, $id)
         {
@@ -64,12 +98,10 @@ class ManageUserController extends Controller
             $user->name = $request->input('name');
             $user->email = $request->input('email');
             $user->password = Hash::make($request->input('password'));
+            $user->role = $request->input('role');
             $user->save();
         
             return redirect()->route('users.manage_user')->with('success', 'User details updated successfully');
         }
         
            }
-        
-
-?>

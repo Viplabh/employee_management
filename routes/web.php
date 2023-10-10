@@ -6,7 +6,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ManageUserController;
 
 
-
 Route::view('master', 'partials.master');
 
 
@@ -24,20 +23,21 @@ Route::middleware([
     })->name('dashboard');
 });
 
+Route::get('/logout', [ManageUserController::class, 'logout'])->name('logout');
 
-Route::get('/dashboard', [UserController::class,'dashboard']) ->name ('dashboard');
+Route::get('/dashboard', [ManageUserController::class, 'dashboard'])->name('dashboard');
 
 Route::get('/users/manage_user', [ManageUserController::class,'manage_user']) ->name ('users.manage_user');
 
-Route::get('/users/add_user', [ManageUserController::class,'add_user']) ->name ('users.add_user');
+Route::get('/users/add_user', [ManageUserController::class,'viewAddUser']) ->name ('users.add_user');
 
-Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
-Route::get('/manage_users', [UserController::class, 'manageUsers'])->name('manage_users');
+Route::post('/user/store', [ManageUserController::class, 'store'])->name('user.store');
+Route::get('/manage_users', [ManageUserController::class, 'manageUsers'])->name('manage_users');
+
 
 Route::delete('/user/delete/{id}', [ManageUserController::class, 'deleteUser'])->name('user.delete');
 Route::get('/user/edit/{id}', [ManageUserController::class, 'editUser'])->name('user.edit');
 Route::put('/user/update/{id}', [ManageUserController::class, 'updateUser'])->name('user.update');
-
 
 
 
@@ -51,4 +51,8 @@ Route::get('/role/manage_role', [ManageRoleController::class, 'manage_role'])->n
 
 Route::get('/role/edit/{id}', [ManageRoleController::class, 'edit'])->name('role.edit');
 Route::delete('/role/delete/{roleID}', [ManageRoleController::class, 'destroy'])->name('role.delete');
+Route::get('/role/{roleID}/edit', [ManageRoleController::class, 'edit'])->name('role.edit');
+Route::put('/role/{roleID}', [ManageRoleController::class, 'update'])->name('role.update');
+
+
 

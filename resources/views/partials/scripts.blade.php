@@ -49,3 +49,4 @@
 <!-- jquery-validation -->
 <script src="{{ asset('/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
 <script src="{{ asset('/plugins/jquery-validation/additional-methods.min.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
