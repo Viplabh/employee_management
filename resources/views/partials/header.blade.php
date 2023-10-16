@@ -8,10 +8,6 @@
         <li class="nav-item d-none d-sm-inline-block">
             <a href="{{ route('dashboard') }}" class="nav-link">Home</a>
         </li>
-
-        <!-- <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Contact</a>
-            </li> -->
     </ul>
 
     <!-- Right navbar links -->
@@ -24,8 +20,7 @@
             <div class="navbar-search-block">
                 <form class="form-inline">
                     <div class="input-group input-group-sm">
-                        <input class="form-control form-control-navbar" type="search" placeholder="Search"
-                            aria-label="Search">
+                        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
                         <div class="input-group-append">
                             <button class="btn btn-navbar" type="submit">
                                 <i class="fas fa-search"></i>
@@ -38,7 +33,6 @@
                 </form>
             </div>
         </li>
-
     </ul>
 </nav>
 <!-- /.navbar -->
@@ -48,8 +42,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a class="brand-link">
-        <img src="dist/img/cogent logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-            style="opacity: .8">
+        <img src="dist/img/cogent logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-bold">COGENT</span>
     </a>
 
@@ -60,7 +53,6 @@
             <!-- Added align-items-center -->
             <div class="info">
                 <a href="#" class="d-block">
-                    <!-- <i class="far fa-user nav-icon"></i> -->
                     <span style="color: white;">
                         <h4>{{ Auth::user()->name }}</h4>
                     </span>
@@ -78,7 +70,7 @@
                         <p>Home Page</p>
                     </a>
                 </li>
-
+                @if(Auth::user()->role === "admin")
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-users-cog"></i>
@@ -128,14 +120,24 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('upload_data') }}" class="nav-link">
                         <i class="nav-icon fas fa-upload"></i>
                         <p>Upload Data</p>
                     </a>
                 </li>
 
+                @endif
+
+                @if(Auth::user()->role !== "admin")
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('agent.search')}}" class="nav-link">
+                        <i class="nav-icon fas fa-search"></i>
+                        <p>Search</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('agent.report')}}" class="nav-link">
                         <i class="nav-icon fas fa-folder"></i>
                         <p>Report</p>
                     </a>
@@ -143,11 +145,11 @@
 
 
             </ul>
+            @endif
 
 
             <ul class="btn">
-                <a href="{{ route('logout') }}"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="fas fa fa-sign-in-alt mr-2"></i>
                     Logout
                 </a>
@@ -159,6 +161,8 @@
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
+    </div>
 </aside>
+
 
 <!-- </body> -->

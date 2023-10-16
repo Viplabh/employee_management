@@ -1,5 +1,8 @@
 <script src="{{ asset('/plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 4 -->
+
+
+
 <script src="{{ asset('/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- Select2 -->
 <script src="{{ asset('/plugins/select2/js/select2.full.min.js') }}"></script>
@@ -49,4 +52,35 @@
 <!-- jquery-validation -->
 <script src="{{ asset('/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
 <script src="{{ asset('/plugins/jquery-validation/additional-methods.min.js') }}"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.js"></script>
+
+
+
+<script>
+    $(function() {
+        $("#reportwork").DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'excel',
+            ],
+            scrollX: true,
+        });
+    });
+</script>
+
+<script>
+    $(function() {
+        $("#example1").DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'excel',
+            ],
+           
+        });
+    });
+</script>

@@ -9,13 +9,13 @@ Dashboard
     {{ session('success') }}
 </div>
 <script>
-$(document).ready(function() {
-    setTimeout(function() {
-        $("#success-alert").fadeOut("slow", function() {
-            $(this).remove();
-        });
-    }, 5000);
-});
+    $(document).ready(function() {
+        setTimeout(function() {
+            $("#success-alert").fadeOut("slow", function() {
+                $(this).remove();
+            });
+        }, 5000);
+    });
 </script>
 @endif
 <div class="content-wrapper mt-5">
@@ -43,13 +43,11 @@ $(document).ready(function() {
                             <td>{{ $user->email }}</td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{ route('user.edit', ['id' => $user->id]) }}"
-                                        class="btn btn-primary">Edit</a>
-                                    <form action="{{ route('user.delete', ['id' => $user->id]) }}" method="POST">
+                                    <a href="{{ route('user.edit', ['id' => $user->id]) }}" class="btn btn-primary">Edit</a>
+                                    <form method="POST" action="{{ route('user.delete', ['id' => $user->id]) }}" id="delete-user-form">
                                         @csrf
                                         @method('DELETE')
-
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
                                     </form>
                                 </div>
                             </td>

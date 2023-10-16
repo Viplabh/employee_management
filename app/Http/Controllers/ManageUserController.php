@@ -41,7 +41,7 @@ class ManageUserController extends Controller
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
-        $user->role = $request->input('userRole');
+        $user->userRole = $request->input('userRole');
         $user->save();
 
         return redirect()->route('users.manage_user')->with('success', 'User added successfully');
@@ -68,26 +68,30 @@ class ManageUserController extends Controller
         return redirect()->route('users.manage_user')->with('error', 'User not found');
     }
 
-    $user->delete();
-
-    return redirect()->route('users.manage_user')->with('success', 'User deleted successfully');
+    if ($user->delete()) {
+        return redirect()->route('users.manage_user')->with('success', 'User deleted successfully');
+    } else {
+        return redirect()->route('users.manage_user')->with('error', 'Failed to delete user');
+    }
 }
 
+
  
-        public function updateUser(Request $request, $id)
-        {
- 
-            $request->validate([
-                'name' => 'required|string|max:255',
-                'email' => [
-                    'required',
-                    'string',
-                    'email',
-                    'max:255',
-                    Rule::unique('users', 'email')->ignore($id),
-                ],
-                'password' => 'required|string|min:8',
-            ]);
+public function updateUser(Request $request, $id)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => [
+            'required',
+            'string',
+            'email',
+            'max:255',
+            Rule::unique('users', 'email')->ignore($id),
+        ],
+        'password' => 'required|string|min:8',
+        'userRole' => 'required',
+        
+    ]);
 
             $user = User::find($id);
         
@@ -98,7 +102,7 @@ class ManageUserController extends Controller
             $user->name = $request->input('name');
             $user->email = $request->input('email');
             $user->password = Hash::make($request->input('password'));
-            $user->role = $request->input('role');
+            $user->userRole = $request->input('userRole');
             $user->save();
         
             return redirect()->route('users.manage_user')->with('success', 'User details updated successfully');

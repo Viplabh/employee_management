@@ -13,18 +13,23 @@ class ManageRoleController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'role' => 'required|max:255',
-        ]);
+{
+    $validatedData = $request->validate([
+        'role' => 'required|max:255|unique:roles', 
+    ]);
 
-        $role = new Roles();
-        $role->role = $validatedData['role'];
-        $role->save();
+    $existingRole = Roles::where('role', $validatedData['role'])->first();
 
-        return redirect()->route('role.manage_role')->with('success', 'Role created successfully');
+    if ($existingRole) {
+        return redirect()->route('role.manage_role')->withErrors(['role' => 'Role already exists']);
     }
 
+    $role = new Roles();
+    $role->role = $validatedData['role'];
+    $role->save();
+
+    return redirect()->route('role.manage_role')->with('success', 'Role created successfully!!!');
+}
 
     public function manage_role()
 {
@@ -40,10 +45,13 @@ public function destroy($roleID)
         return redirect()->route('role.manage_role')->with('error', 'Role not found');
     }
 
-    $role->delete();
-
-    return redirect()->route('role.manage_role')->with('success', 'Role deleted successfully');
+    if ($role->delete()) {
+        return redirect()->route('role.manage_role')->with('success', 'Role Deleted Successfully!!!');
+    } else {
+        return redirect()->route('role.manage_role')->with('error', 'Failed to delete role');
+    }
 }
+
 
 public function edit($roleID)
 {
@@ -73,6 +81,5 @@ public function update(Request $request, $roleID)
 
     return redirect()->route('role.manage_role')->with('success', 'Role updated successfully');
 }
-
 
 }
