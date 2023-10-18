@@ -84,3 +84,16 @@
         });
     });
 </script>
+
+<script>
+  $(document).ready(function() {
+    toastr.options.timeOut = 2000;
+    @if(Session::has('error'))
+    toastr.error("{{ Session::get('error') }}");
+    @elseif(Session::has('success'))
+    toastr.success("{{ Session::get('success') }}");
+    @elseif(Session::has('info'))
+    toastr.info("{{ Session::get('info') }}");
+    @endif
+  });
+</script>

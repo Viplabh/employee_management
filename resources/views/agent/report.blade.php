@@ -7,7 +7,7 @@ Dashboard
     <div class="content-header">
         <form action="{{route('agent.daterange')}}" method="POST" id="daterange">
             @csrf
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="card card-primary">
                     <div class="card-header">
                         <h3 class="card-title">Select Date Range</h3>

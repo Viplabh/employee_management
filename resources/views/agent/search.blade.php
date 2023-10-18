@@ -3,6 +3,7 @@
 Dashboard
 @stop
 @section('content')
+
 <div class="content-wrapper">
     <div class="content-header">
         <div class="container-fluid">
@@ -16,6 +17,7 @@ Dashboard
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
+                                            <label for="phone">Search With Phone Number :</label>
                                             <div class="input-group input-group-lg">
                                                 <input type="search" name="phone" id="phone" class="form-control form-control-lg" placeholder="Enter Phone Number" pattern="[0-9]{10}">
                                                 <div class="input-group-append">
@@ -24,11 +26,13 @@ Dashboard
                                                     </button>
                                                 </div>
                                             </div>
+                                            <p id="phoneError" style="color: red;">
+                                                @error('phone') {{ $message }} @enderror
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
                             </form>
-
                         </div>
                     </div>
                     @isset($results)
@@ -116,4 +120,20 @@ Dashboard
         </div>
     </div>
 </div>
+</div>
+<!-- <script>
+function validateForm() {
+    var phoneField = document.getElementById("phone").value;
+    var phoneError = document.getElementById("phoneError");
+
+    if (phoneField.trim() === "") {
+        phoneError.textContent = "Phone Number is required!!";
+        return false;
+    } else {
+        phoneError.textContent = "";
+    }
+
+    return true;
+}
+</script> -->
 @endsection

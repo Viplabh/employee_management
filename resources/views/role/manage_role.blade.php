@@ -4,11 +4,7 @@ Dashboard
 @stop
 
 @section('content')
-@if(session('success'))
-<div class="alert alert-success text-center">
-    {{ session('success') }}
-</div>
-@endif
+
 <div class="content-wrapper">
     <div class="content-header">
         <div class="container-fluid">
@@ -38,7 +34,7 @@ Dashboard
                                                 <form action="{{ route('role.delete', ['roleID' => $role->roleID]) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
                                                 </form>
                                             </div>
                                         </td>

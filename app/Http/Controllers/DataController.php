@@ -17,18 +17,17 @@ class DataController extends Controller
 
         return view('upload_data');
     }
-
     public function import(Request $request)
 {
-    $request->validate([
-        'file' => 'required|file|mimes:xls,xlsx',
-    ]);
+    $validatedData = $request->validate([
+            'file' => 'required|max:255',
+        ]);
+        
 
     $data = Excel::import(new UsersImport, request()->file('file'));
 
-    session()->flash('success', 'Successfully Uploaded!!!');
-
-    return redirect()->route('upload_data');
+    $request->session()->flash('success', 'File Uploaded Successfully');
+    return redirect('upload_data');
 }
  
 }       

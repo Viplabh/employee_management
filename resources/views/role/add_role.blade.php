@@ -17,13 +17,15 @@ Dashboard
                             <form method="POST" action="{{ route('save.role') }}">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="role">Role</label>
+                                    <label for="role">Role :</label>
                                     <input type="text" name="role" class="form-control" id="role" placeholder="Enter Role">
                                     @error('role')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <div class="text-center">
                                 <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
                             </form>
                         </div>
                     </div>

@@ -24,6 +24,7 @@ class ManageUserController extends Controller
     }
     public function store(Request $request)
     {
+      
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => [
@@ -41,7 +42,7 @@ class ManageUserController extends Controller
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
-        $user->userRole = $request->input('userRole');
+        $user->role = $request->input('userRole');
         $user->save();
 
         return redirect()->route('users.manage_user')->with('success', 'User added successfully');
@@ -102,10 +103,12 @@ public function updateUser(Request $request, $id)
             $user->name = $request->input('name');
             $user->email = $request->input('email');
             $user->password = Hash::make($request->input('password'));
+            
             $user->userRole = $request->input('userRole');
             $user->save();
         
-            return redirect()->route('users.manage_user')->with('success', 'User details updated successfully');
-        }
+            $request->session()->flash('success', 'User Created Successfully');
+            return redirect('users.manage_user');        }
         
            }
+

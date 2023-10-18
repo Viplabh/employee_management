@@ -10,8 +10,8 @@ Dashboard
         <div class="row ">
             <div class="col-md-6 mx-auto mt-4 ">
                 <div class="card card-primary ">
-                    <div class="card-header ">
-                        <h3 class="card-title ">Add New Users..</h3>
+                    <div class="card-header">
+                        <h3 class="card-title">Add New Users..</h3>
                     </div>
                     <form method="POST" action="{{ route('user.store') }}" id="userForm">
                         @csrf
@@ -34,8 +34,9 @@ Dashboard
                             <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
+                                <label for="role">Role :</label>
                                 <select class="form-control select2" style="width: 100%;" name="userRole">
                                     <option>---Select---</option>
                                     @foreach($roles as $role)

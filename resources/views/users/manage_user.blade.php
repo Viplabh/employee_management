@@ -4,25 +4,12 @@ Dashboard
 @stop
 
 @section('content')
-@if (session('success'))
-<div class="alert alert-success text-center">
-    {{ session('success') }}
-</div>
-<script>
-    $(document).ready(function() {
-        setTimeout(function() {
-            $("#success-alert").fadeOut("slow", function() {
-                $(this).remove();
-            });
-        }, 5000);
-    });
-</script>
-@endif
+
 <div class="content-wrapper mt-5">
     <section class="content">
         <div class="card card-outline-primary">
             <div class="card-header">
-                <h3 class="card-title">Here are your Users...</h3>
+                <h3 class="card-title">Here's Your Users...</h3>
             </div>
 
             <div class="card-body">

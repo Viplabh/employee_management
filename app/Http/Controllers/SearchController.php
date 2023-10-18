@@ -15,9 +15,11 @@ class SearchController extends Controller
         return view('agent.search');
     }
 
-
     public function searchPhoneNumber(Request $request)
     { {
+        $request->validate([
+            'phone' => 'required|regex:/[0-9]{10}/',
+        ]);
             try {
                 $phone = $request->input('phone');
                 $results = DataUpload::where('mobile_no', $phone)->get();
@@ -31,12 +33,10 @@ class SearchController extends Controller
             }
         }
     }
-
-
     public function customer_status(Request $request)
     {
         try {
-            $status = $request->input('status');
+            $status = $request->input('Status');
             $remarks = $request->input('remarks');
             $number = $request->input('number');
 
@@ -48,10 +48,10 @@ class SearchController extends Controller
                     'updated_by' => Auth::user()->email,
                 ]);
 
-            return redirect('agent/search')->with('success', 'Details Updated Successfully');
+            $request->session()->flash('success', 'Status Updated Successfully');
+            return redirect('/agent/search');
         } catch (Exception $e) {
             return back()->with('error', 'Something Went Wrong');
         }
     }
-    
 }
