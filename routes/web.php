@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DataController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\ManageRoleController;
 use App\Http\Controllers\ManageUserController;
 use App\Http\Controllers\SearchController;
@@ -30,14 +31,13 @@ Route::get('/logout', [ManageUserController::class, 'logout'])->name('logout');
 Route::get('/dashboard', [ManageUserController::class, 'dashboard'])->name('dashboard');
 
 
+Route::get('/manage_users', [ManageUserController::class, 'manageUsers'])->name('manage_users');
 
 Route::get('/users/manage_user', [ManageUserController::class, 'manage_user'])->name('users.manage_user');
 
 Route::get('/users/add_user', [ManageUserController::class, 'viewAddUser'])->name('users.add_user');
 
 Route::post('/user/store', [ManageUserController::class, 'store'])->name('user.store');
-
-Route::get('/manage_users', [ManageUserController::class, 'manageUsers'])->name('manage_users');
 
 Route::delete('/user/delete/{id}', [ManageUserController::class, 'deleteUser'])->name('user.delete');
 
@@ -87,3 +87,7 @@ Route::post('/agent/customer_status', [SearchController::class, 'customer_status
 Route::get('/agent/report', [ReportController::class, 'report'])->name('agent.report');
 
 Route::post('agent/daterange', [ReportController::class, 'daterange'])->name('agent.daterange');
+
+
+
+Route::get('mail', [MailController::class, 'SendMail'])->name('mail');

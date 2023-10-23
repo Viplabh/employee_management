@@ -35,7 +35,6 @@ class ReportController extends Controller
                 ->get();
         }
         if ($data->isEmpty()) {
-            // If no data is found, return a view with a "No data found" message
             $request->session()->flash('error', 'No data found between this range.');
             return redirect('/agent/report'); 
         }

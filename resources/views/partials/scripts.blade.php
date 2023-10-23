@@ -69,6 +69,7 @@
                 'excel',
             ],
             scrollX: true,
+            responsive: true,
         });
     });
 </script>

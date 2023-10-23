@@ -23,7 +23,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <div class="dropdown-divider"></div>
-                        
+
                         <div class="dropdown-divider"></div>
                         <form method="POST" action="{{ route('logout') }}" x-data>
                             @csrf
@@ -95,7 +95,6 @@
                         </li>
                     </ul>
                 </li>
-
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-user-cog"></i>
@@ -158,6 +157,3 @@
         <!-- /.sidebar-menu -->
     </div>
 </aside>
-
-
-<!-- </body> -->

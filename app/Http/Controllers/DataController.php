@@ -23,6 +23,11 @@ class DataController extends Controller
             'file' => 'required|max:255',
         ]);
         
+        // $currentTime = now()->format('Y-m-d-His');
+        // $milliseconds = round(microtime(true) * 1000);
+
+        
+        // dd($request->all());
 
     $data = Excel::import(new UsersImport, request()->file('file'));
 

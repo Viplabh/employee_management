@@ -14,7 +14,6 @@ Dashboard
                         <h3 class="card-title">Edit User Details..</h3>
                     </div>
                     <form method="POST" action="{{ route('user.update', ['id' => $user->id]) }}" id="userForm">
-
                         @csrf
                         @method('PUT')
 
@@ -37,7 +36,7 @@ Dashboard
                         </div>
 
                         <button type="submit" class="btn btn-primary">Update Details</button>
-            
+
                     </form>
                 </div>
             </div>
@@ -65,10 +64,7 @@ Dashboard
                     required: 'Please enter an email address',
                     email: 'Please enter a valid email address',
                 },
-                password: {
-                    required: 'Please provide a password',
-                    minlength: 'Your password must be at least 8 characters long',
-                },
+
                 userRole: 'Please select a user role',
             },
             errorElement: 'span',

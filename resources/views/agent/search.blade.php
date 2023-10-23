@@ -121,19 +121,5 @@ Dashboard
     </div>
 </div>
 </div>
-<!-- <script>
-function validateForm() {
-    var phoneField = document.getElementById("phone").value;
-    var phoneError = document.getElementById("phoneError");
 
-    if (phoneField.trim() === "") {
-        phoneError.textContent = "Phone Number is required!!";
-        return false;
-    } else {
-        phoneError.textContent = "";
-    }
-
-    return true;
-}
-</script> -->
 @endsection
